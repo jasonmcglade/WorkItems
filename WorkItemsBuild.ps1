@@ -14,7 +14,8 @@ Properties {
 # Database Properties
 Properties {
     $sqlite_exe = "tools\sqlite\sqlite3.exe"
-    $database_name = "$build_dir\data\work_items.db"
+    $database_directory = "$build_dir\data"
+    $database_name = "$database_directory\work_items.db"
 
     $database_migrations_path = "$build_dir\src\Database\Migrations"
     $database_data_path = "$build_dir\src\Database\Data"
@@ -64,6 +65,10 @@ Task Clean {
 }
 
 Task DB {
+    if ((Test-Path $database_directory) -eq $false) {
+        New-Item $database_directory -type directory
+    }
+
     if (Test-Path $database_name) {
         Log "Deleting existing database file: $database_name"
         Remove-Item $database_name
