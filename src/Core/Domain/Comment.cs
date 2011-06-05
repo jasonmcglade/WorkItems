@@ -7,8 +7,16 @@ namespace WorkItems.Core.Domain
 {
     public class Comment
     {
-        public string Text { get; set; }
-        public DateTime AddedDate { get; set; }
-        public string User { get; set; }
+        public Comment(string text, string user)
+        {
+            Text = text;
+            User = user;
+            AddedDate = DateTime.UtcNow;
+        }
+
+        public virtual WorkItem WorkItem { get; set; }
+        public virtual string Text { get; set; }
+        public virtual DateTime AddedDate { get; set; }
+        public virtual string User { get; set; }
     }
 }

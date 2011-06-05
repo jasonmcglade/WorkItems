@@ -5,6 +5,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "src\Core\Core.cspro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Tests", "src\Core\Tests\Core.Tests.csproj", "{2800EE45-D6C3-4BA2-AAB2-8C9EC3F3CABE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4DF28971-0192-4BB2-AFCE-D17536AE3968}"
+	ProjectSection(SolutionItems) = preProject
+		WorkItemsBuild.ps1 = WorkItemsBuild.ps1
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

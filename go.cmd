@@ -1,1 +1,1 @@
-Powershell .\tools\psake\psake.ps1 .\WorkItemsBuild.ps1 %*
+Powershell .\packages\psake.4.0.1.0\tools\psake.ps1 .\WorkItemsBuild.ps1 %*

@@ -1,3 +1,5 @@
+$framework = '4.0'
+
 Properties {
 	$build_dir = Split-Path $psake.build_script_file	
 	$build_artifacts_dir = "$build_dir\build\"
@@ -6,16 +8,17 @@ Properties {
 }
 
 Properties {
-    $psake_dir = "$build_dir\tools\psake\"
-    $nunit_module = "$psake_dir\nunit.psm1"
+    $nunit_module = "$build_dir\tools\psake\nunit.psm1"
 }
 
-FormatTaskName (("-"*25) + "[{0}]" + ("-"*25)) 
+FormatTaskName {
+   param($taskName)
+   write-host (("-"*25) + "[$taskName]" + ("-"*25))  -foregroundcolor Green
+}
 
 Task default -Depends Test
 
 Task Test -Depends Compile, Clean {
-    Log “Here is where we run the tests” 
     $test_assemblies = (Get-ChildItem "$build_dir" -Recurse -Include *Tests.dll -Name | Select-String "bin")
     
     Import-Module $nunit_module -argument $nunit_path
@@ -53,5 +56,5 @@ Task Clean {
 
 Function Log ($message)
 {
-    Write-Host $message -ForegroundColor Green
+    Write-Host $message -ForegroundColor Blue
 }
