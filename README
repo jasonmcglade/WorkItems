@@ -1,1 +1,13 @@
 The purpose of this repository is to provide a playground to experiment with new technologies and demonstrate code.
+
+To Build:
+---------
+From the command line run the following commands:
+
+To create the database
+
+> go db
+
+To build and run the tests
+
+> go
