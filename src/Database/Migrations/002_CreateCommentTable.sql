@@ -1,8 +1,8 @@
 CREATE TABLE [comment] (
-    [comment_id] INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT,
+    [id] INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT,
     [text] VARCHAR(500)  NULL,
     [user] VARCHAR(255)  NULL,
     [added_date] DATE  NULL,
     [work_item_id] INTEGER NOT NULL,
-    FOREIGN KEY(work_item_id) REFERENCES work_item(work_item_id)
+    FOREIGN KEY(work_item_id) REFERENCES work_item(id)
 );
