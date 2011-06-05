@@ -1,0 +1,11 @@
+D:\Jason\Work\Demonstration\WorkItems\src\Core\Tests\bin\Debug\Core.Tests.dll
+D:\Jason\Work\Demonstration\WorkItems\src\Core\Tests\bin\Debug\Core.Tests.pdb
+D:\Jason\Work\Demonstration\WorkItems\src\Core\Tests\bin\Debug\nunit.framework.dll
+D:\Jason\Work\Demonstration\WorkItems\src\Core\Tests\bin\Debug\nunit.mocks.dll
+D:\Jason\Work\Demonstration\WorkItems\src\Core\Tests\bin\Debug\pnunit.framework.dll
+D:\Jason\Work\Demonstration\WorkItems\src\Core\Tests\bin\Debug\WorkItems.Core.dll
+D:\Jason\Work\Demonstration\WorkItems\src\Core\Tests\bin\Debug\WorkItems.Core.pdb
+D:\Jason\Work\Demonstration\WorkItems\src\Core\Tests\bin\Debug\nunit.framework.xml
+D:\Jason\Work\Demonstration\WorkItems\src\Core\Tests\obj\Debug\ResolveAssemblyReference.cache
+D:\Jason\Work\Demonstration\WorkItems\src\Core\Tests\obj\Debug\Core.Tests.dll
+D:\Jason\Work\Demonstration\WorkItems\src\Core\Tests\obj\Debug\Core.Tests.pdb

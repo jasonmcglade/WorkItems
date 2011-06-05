@@ -1,0 +1,16 @@
+D:\Jason\Work\Demonstration\WorkItems\src\Core\bin\Debug\WorkItems.Core.dll.config
+D:\Jason\Work\Demonstration\WorkItems\src\Core\bin\Debug\WorkItems.Core.dll
+D:\Jason\Work\Demonstration\WorkItems\src\Core\bin\Debug\WorkItems.Core.pdb
+D:\Jason\Work\Demonstration\WorkItems\src\Core\bin\Debug\Castle.Core.dll
+D:\Jason\Work\Demonstration\WorkItems\src\Core\bin\Debug\FluentNHibernate.dll
+D:\Jason\Work\Demonstration\WorkItems\src\Core\bin\Debug\Iesi.Collections.dll
+D:\Jason\Work\Demonstration\WorkItems\src\Core\bin\Debug\NHibernate.ByteCode.Castle.dll
+D:\Jason\Work\Demonstration\WorkItems\src\Core\bin\Debug\NHibernate.dll
+D:\Jason\Work\Demonstration\WorkItems\src\Core\bin\Debug\System.Data.SQLite.DLL
+D:\Jason\Work\Demonstration\WorkItems\src\Core\bin\Debug\Castle.Core.xml
+D:\Jason\Work\Demonstration\WorkItems\src\Core\bin\Debug\FluentNHibernate.pdb
+D:\Jason\Work\Demonstration\WorkItems\src\Core\bin\Debug\Iesi.Collections.pdb
+D:\Jason\Work\Demonstration\WorkItems\src\Core\bin\Debug\NHibernate.ByteCode.Castle.xml
+D:\Jason\Work\Demonstration\WorkItems\src\Core\obj\Debug\ResolveAssemblyReference.cache
+D:\Jason\Work\Demonstration\WorkItems\src\Core\obj\Debug\WorkItems.Core.dll
+D:\Jason\Work\Demonstration\WorkItems\src\Core\obj\Debug\WorkItems.Core.pdb
