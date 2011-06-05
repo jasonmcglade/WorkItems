@@ -32,7 +32,6 @@ namespace Core.Tests.Services
         }
 
         [Test]
-        [Ignore("Issue with transactions not rolling back to resolve")]
         public void GetAllWorkItemsShouldReturnEachSavedItem()
         {
             Save(new WorkItem { Title = "Title One" });

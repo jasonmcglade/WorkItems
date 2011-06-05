@@ -19,15 +19,10 @@ namespace WorkItems.Core.Services
 
         public WorkItem[] GetAllWorkItems()
         {
-            using (var transaction = Session.BeginTransaction())
-            {
-                var workItems = (from item in Session.Query<WorkItem>()
-                                 select item).ToArray();
+            var workItems = (from item in Session.Query<WorkItem>()
+                                select item).ToArray();
 
-                transaction.Commit();
-
-                return workItems;
-            }
+            return workItems;
         }
     }
 }

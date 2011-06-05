@@ -8,8 +8,8 @@
     <ProjectGuid>{2800EE45-D6C3-4BA2-AAB2-8C9EC3F3CABE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Core.Tests</RootNamespace>
-    <AssemblyName>Core.Tests</AssemblyName>
+    <RootNamespace>WorkItems.Core.Tests</RootNamespace>
+    <AssemblyName>WorkItems.Core.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

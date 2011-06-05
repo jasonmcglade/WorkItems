@@ -28,9 +28,12 @@ namespace Core.Tests.DataAccess
         [TearDown]
         public virtual void TearDown()
         {
-            if (_transaction != null && _transaction.IsActive)
+            if (_transaction != null)
             {
-                _transaction.Rollback();
+                if (_transaction.IsActive)
+                {
+                    _transaction.Rollback();
+                }
                 _transaction.Dispose();
             }
 
@@ -49,8 +52,9 @@ namespace Core.Tests.DataAccess
         public void Save<T>(T entity)
         {
             _session.Save(entity);
+
             _session.Flush();
-            _session.Evict(entity);
+            _session.Clear();
         }
     }
 }
