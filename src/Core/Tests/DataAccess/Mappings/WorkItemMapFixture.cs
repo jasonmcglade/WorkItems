@@ -19,6 +19,7 @@ namespace Core.Tests.DataAccess.Mappings
                 .CheckProperty(c => c.Id, 1)
                 .CheckProperty(c => c.Title, "Title")
                 .CheckProperty(c => c.Description, "Description")
+                .CheckProperty(c => c.CreatedDate, DateTime.Today)
                 .VerifyTheMappings();
         }
     }

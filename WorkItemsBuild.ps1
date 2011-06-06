@@ -14,7 +14,7 @@ Properties {
 # Database Properties
 Properties {
     $sqlite_exe = "tools\sqlite\sqlite3.exe"
-    $database_directory = "$build_dir\data"
+    $database_directory = "$build_dir\src\Web\App_Data"
     $database_name = "$database_directory\work_items.db"
 
     $database_migrations_path = "$build_dir\src\Database\Migrations"
@@ -34,6 +34,7 @@ Task Test -Depends Compile, Clean {
     Import-Module $nunit_module -argument $nunit_path
 
     foreach($assembly_name in $test_assemblies) {
+        Log "Executing tests for $assembly_name"
         [array]$results += nunit "$assembly_name"
     }
     

@@ -19,6 +19,15 @@ namespace Core.Tests.Domain
         }
 
         [Test]
+        public void CreateShouldDefaultTheCreateDate()
+        {
+            var currentTime = DateTime.UtcNow;
+            var entity = new WorkItem();
+
+            Assert.That(entity.CreatedDate.Subtract(currentTime), Is.LessThan(TimeSpan.FromSeconds(1)));
+        }
+
+        [Test]
         public void CreateShouldInitializeComments()
         {
             var entity = new WorkItem();

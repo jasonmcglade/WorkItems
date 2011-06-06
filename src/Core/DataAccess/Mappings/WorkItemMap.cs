@@ -16,6 +16,7 @@ namespace WorkItems.Core.DataAccess.Mappings
             Id(x => x.Id);
             Map(x => x.Title);
             Map(x => x.Description);
+            Map(x => x.CreatedDate, "created_date");
         }
     }
 }

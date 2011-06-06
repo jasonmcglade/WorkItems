@@ -18,6 +18,7 @@ namespace WorkItems.Core.Domain
         public virtual string Title { get; set; }
         public virtual string Description { get; set; }
         public virtual string Staus { get; set; }
+        public virtual DateTime CreatedDate { get; set; }
 
         public virtual IEnumerable<Comment> Comments 
         { 
