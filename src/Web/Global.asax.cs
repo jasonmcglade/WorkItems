@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Ninject.Web.Mvc;
+using Ninject;
+using WorkItems.Web.Modules;
 
 namespace Web
 {
@@ -35,6 +38,18 @@ namespace Web
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+
+            SetupDependencyInjection();
+        }
+
+        public void SetupDependencyInjection()
+        {
+            DependencyResolver.SetResolver(new NinjectDependencyResolver(CreateKernel()));
+        }
+
+        private IKernel CreateKernel()
+        {
+            return new StandardKernel(new[] { new ServicesModule() });
         }
     }
 }

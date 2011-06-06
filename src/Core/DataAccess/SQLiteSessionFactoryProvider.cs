@@ -6,10 +6,11 @@ using FluentNHibernate.Cfg;
 using NHibernate;
 using FluentNHibernate.Cfg.Db;
 using System.Reflection;
+using Ninject.Activation;
 
 namespace WorkItems.Core.DataAccess
 {
-    public static class SQLiteSessionFactory
+    public class SQLiteSessionFactoryProvider : Provider<ISessionFactory>
     {
         public static ISessionFactory CreateSessionFactory()
         {
@@ -22,6 +23,11 @@ namespace WorkItems.Core.DataAccess
                 .Mappings(m =>
                     m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
                 .BuildSessionFactory();
+        }
+
+        protected override ISessionFactory CreateInstance(IContext context)
+        {
+            return CreateSessionFactory();
         }
     }
 }

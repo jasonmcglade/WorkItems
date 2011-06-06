@@ -20,7 +20,7 @@ namespace Core.Tests.DataAccess
         [SetUp]
         public virtual void SetUp()
         {
-            _sessionFactory = SQLiteSessionFactory.CreateSessionFactory();
+            _sessionFactory = SQLiteSessionFactoryProvider.CreateSessionFactory();
             _session = _sessionFactory.OpenSession();
             _transaction = _session.BeginTransaction();
         }
