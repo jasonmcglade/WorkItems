@@ -19,8 +19,8 @@ namespace WorkItems.Core.Domain
         }
 
         public virtual WorkItem WorkItem { get; set; }
-        public virtual string Text { get; set; }
-        public virtual DateTime AddedDate { get; set; }
-        public virtual string User { get; set; }
+        public virtual string Text { get; private set; }
+        public virtual DateTime AddedDate { get; private set; }
+        public virtual string User { get; private set; }
     }
 }
