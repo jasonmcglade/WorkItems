@@ -6,8 +6,9 @@ using NUnit.Framework;
 using Core.Tests.DataAccess;
 using WorkItems.Core.Services;
 using WorkItems.Core.Domain;
+using WorkItems.Core.Tests;
 
-namespace Core.Tests.Services
+namespace WorkItems.Core.Tests.Services
 {
     [TestFixture]
     [IntegrationCategory]

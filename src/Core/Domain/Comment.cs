@@ -5,8 +5,12 @@ using System.Text;
 
 namespace WorkItems.Core.Domain
 {
-    public class Comment
+    public class Comment : Entity
     {
+        protected Comment()
+        {
+        }
+
         public Comment(string text, string user)
         {
             Text = text;

@@ -5,7 +5,7 @@ using System.Text;
 using NUnit.Framework;
 using WorkItems.Core.Domain;
 
-namespace Core.Tests.Domain
+namespace WorkItems.Core.Tests.Domain
 {
     [TestFixture]
     public class CommentFixture

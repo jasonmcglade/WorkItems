@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 
-namespace Core.Tests
+namespace WorkItems.Core.Tests
 {
     public class IntegrationCategory : CategoryAttribute
     {

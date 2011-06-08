@@ -7,6 +7,7 @@ using NHibernate;
 using FluentNHibernate.Cfg.Db;
 using System.Reflection;
 using Ninject.Activation;
+using FluentNHibernate.Automapping;
 
 namespace WorkItems.Core.DataAccess
 {

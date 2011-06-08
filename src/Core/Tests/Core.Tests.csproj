@@ -70,6 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\Mappings\CommentMapFixture.cs" />
     <Compile Include="DataAccess\TransactionalFixtureBase.cs" />
     <Compile Include="DataAccess\Mappings\WorkItemMapFixture.cs" />
     <Compile Include="Domain\CommentFixture.cs" />

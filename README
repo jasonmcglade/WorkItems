@@ -20,6 +20,6 @@ To add some test data to the database
 To Run:
 -------
 
-Debug the web project from Visual Studio, or run the following command line and navigate to http://localhost:8080/:
+Debug the web project from Visual Studio, or run the following command line and navigate to http://localhost:8080/
 
 > start_server

@@ -8,7 +8,6 @@ using WorkItems.Core.DataAccess;
 
 namespace Core.Tests.DataAccess
 {
-    [TestFixture]
     public class TransactionalFixtureBase
     {
         private ISessionFactory _sessionFactory;
@@ -49,12 +48,21 @@ namespace Core.Tests.DataAccess
             }
         }
 
-        public void Save<T>(T entity)
+        public T Save<T>(T entity)
         {
-            _session.Save(entity);
+            _session.SaveOrUpdate(entity);
 
             _session.Flush();
             _session.Clear();
+
+            _session.Evict(entity);
+
+            return entity;
+        }
+
+        public T Get<T>(int id)
+        {
+            return _session.Get<T>(id);
         }
     }
 }

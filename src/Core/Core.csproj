@@ -61,9 +61,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\Mappings\CommentMap.cs" />
+    <Compile Include="DataAccess\Mappings\EntityMap.cs" />
     <Compile Include="DataAccess\SQLiteSessionFactoryProvider.cs" />
     <Compile Include="DataAccess\Mappings\WorkItemMap.cs" />
     <Compile Include="Domain\Comment.cs" />
+    <Compile Include="Domain\Entity.cs" />
     <Compile Include="Domain\WorkItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IWorkItemService.cs" />
