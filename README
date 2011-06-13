@@ -1,5 +1,15 @@
 The purpose of this repository is to provide a playground to experiment with new technologies and demonstrate code.
 
+Technologies Included:
+----------------------
+* ASP.Net MVC3 
+* jquery
+* Knockout.js
+* NInject IoC
+* Nhibernate (with SQLite db for simplicity)
+* NUnit tests (with RhinoMocks)
+* PowerShell Build scripts to setup db and build/test (using psake). 
+
 To Build:
 ---------
 From the command line run the following commands:

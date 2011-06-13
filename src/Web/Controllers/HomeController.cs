@@ -17,6 +17,9 @@ namespace WorkItems.Web.Controllers
             _workItemService = workItemService;
         }
 
+        /// <summary>
+        /// Search for all work items that match the specified criteria
+        /// </summary>
         public ActionResult Index(WorkItemSearchCriteria criteria)
         {
             var searchResult = _workItemService.GetWorkItemsByCriteria(criteria);

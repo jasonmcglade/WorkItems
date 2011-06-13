@@ -25,6 +25,7 @@
 <button onclick="javascript: location.reload();" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"><span class="ui-button-text">Refresh</span></button>
 <button id="addWorkItemButton" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"><span class="ui-button-text">Add Work Item</span></button>
 
+<!-- Dialog for details view of a Work Item - including editing values and adding comments -->
 <div id="dialog-form" title="Work Item Details">
     <table id="workItemDetails">
 		<tbody>
@@ -53,6 +54,7 @@
 
     <br />
 
+    <div data-bind='template: "commentTemplate"' />
     <script id='commentTemplate' type='text/html'>
 
         <table id="workItemComments">
@@ -78,10 +80,6 @@
 
     </script>
 
-
-
-    <div data-bind='template: "commentTemplate"' />
-
 </div>
 
 <script type="text/javascript">
@@ -89,6 +87,7 @@
         var allTableRows = $("#workItemGrid tbody tr");
         var addWorkItemButton = $("#addWorkItemButton");
 
+        // Define the view model for the Work Item details view
         var viewModel = {
             Id: null,
             Title: null,
@@ -97,6 +96,7 @@
             AddedComment: null,
             Comments: null,
 
+            // Bind a work item to the view model
             bind: function (workItem) {
                 this.Id = ko.observable(workItem.Id);
                 this.Title = ko.observable(workItem.Title);
@@ -106,6 +106,7 @@
                 this.Comments = ko.observableArray(workItem.comments);
             },
 
+            // Reset the view model
             reset: function () {
                 this.Id = ko.observable("");
                 this.Title = ko.observable("");
@@ -115,6 +116,7 @@
                 this.Comments = ko.observableArray();
             },
 
+            // Save a new or updated work item from the view model
             save: function () {
                 $.ajax({
                     url: '/WorkItem/Save',
@@ -142,6 +144,7 @@
             }
         });
 
+        // Bind the click event to each table row to load the work item and open the modal dialog
         allTableRows.click(function () {
             var workItemId = $(this).children().first().text();
 
@@ -163,6 +166,7 @@
 
         });
 
+        // Bind the click event to the add button to open the a blank modal dialog
         addWorkItemButton.click(function () {
             viewModel.reset();
             ko.applyBindings(viewModel);

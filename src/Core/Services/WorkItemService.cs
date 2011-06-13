@@ -18,6 +18,9 @@ namespace WorkItems.Core.Services
             Session = session;
         }
 
+        /// <summary>
+        /// Search for Work Items using the specified criteria to filer, sort and apply paging
+        /// </summary>
         public WorkItemSearchResult GetWorkItemsByCriteria(WorkItemSearchCriteria criteria)
         {
             var query = Session.Query<WorkItem>();
@@ -34,11 +37,17 @@ namespace WorkItems.Core.Services
                         };
         }
 
+        /// <summary>
+        /// Load the specified Work Item from the db
+        /// </summary>
         public WorkItem GetById(int id)
         {
             return Session.Get<WorkItem>(id);
         }
 
+        /// <summary>
+        /// Update an existing Work Item (if present) or save a new Work Item
+        /// </summary>
         public void Save(SaveWorkItemDetails workItemDetails)
         {
             var repositoryWorkItem = GetById(workItemDetails.Id);

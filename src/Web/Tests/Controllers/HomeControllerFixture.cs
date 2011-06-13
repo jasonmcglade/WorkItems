@@ -10,14 +10,13 @@ using WorkItems.Core.Services;
 using Rhino.Mocks;
 using WorkItems.Core.Domain;
 
-namespace Web.Tests.Controllers
+namespace WorkItems.Web.Tests.Controllers
 {
     [TestFixture]
     public class HomeControllerFixture
     {
         private HomeController _controller;
         private IWorkItemService _workItemService;
-
 
         [SetUp]
         public void SetUp()
@@ -40,7 +39,32 @@ namespace Web.Tests.Controllers
         }
 
         [Test]
-        public void About()
+        public void IndexShouldGetTotalWorkItemCountFromService()
+        {
+            var workItemCount = 5;
+
+            var searchCriteria = new WorkItemSearchCriteria();
+            _workItemService.Expect(x => x.GetWorkItemsByCriteria(searchCriteria)).Return(new WorkItemSearchResult { WorkItems = new WorkItem[0], TotalWorkItemCount = workItemCount });
+
+            var result = _controller.Index(searchCriteria) as ViewResult;
+
+            Assert.That(result.ViewBag.WorkItemCount, Is.EqualTo(workItemCount));
+            _workItemService.VerifyAllExpectations();
+        }
+
+        [Test]
+        public void IndexShouldSetPageSizeToSearchCriteriaDefault()
+        {
+            var searchCriteria = new WorkItemSearchCriteria();
+            _workItemService.Stub(x => x.GetWorkItemsByCriteria(searchCriteria)).Return(new WorkItemSearchResult());
+
+            var result = _controller.Index(searchCriteria) as ViewResult;
+
+            Assert.That(result.ViewBag.PageSize, Is.EqualTo(WorkItemSearchCriteria.PageSize));
+        }
+
+        [Test]
+        public void AboutShouldReturnViewResult()
         {
             var result = _controller.About() as ViewResult;
 
