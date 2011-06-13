@@ -38,18 +38,6 @@ namespace Web
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
-
-            SetupDependencyInjection();
-        }
-
-        public void SetupDependencyInjection()
-        {
-            DependencyResolver.SetResolver(new NinjectDependencyResolver(CreateKernel()));
-        }
-
-        private IKernel CreateKernel()
-        {
-            return new StandardKernel(new[] { new ServicesModule() });
         }
     }
 }

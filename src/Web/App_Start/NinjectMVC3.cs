@@ -7,6 +7,7 @@ namespace WorkItems.Web.App_Start
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
     using Ninject;
     using Ninject.Web.Mvc;
+    using WorkItems.Web.Modules;
 
     public static class NinjectMVC3 
     {
@@ -47,6 +48,7 @@ namespace WorkItems.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Load<ServicesModule>();
         }        
     }
 }
