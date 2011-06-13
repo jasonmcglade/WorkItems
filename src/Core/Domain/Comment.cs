@@ -17,7 +17,7 @@ namespace WorkItems.Core.Domain
             User = user;
             AddedDate = DateTime.UtcNow;
         }
-
+        
         public virtual WorkItem WorkItem { get; set; }
         public virtual string Text { get; private set; }
         public virtual DateTime AddedDate { get; private set; }

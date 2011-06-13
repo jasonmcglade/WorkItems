@@ -4,6 +4,11 @@ INSERT INTO work_item
 VALUES
     ('Work Item Title One', 'Some detailed description on the work item.', date('now','-1 day'), 1);
 
+INSERT INTO comment
+    (text, work_item_id, version)
+VALUES
+    ('Comment text', 1, 1);
+
 INSERT INTO work_item 
     (title, description, created_date, version)
 VALUES

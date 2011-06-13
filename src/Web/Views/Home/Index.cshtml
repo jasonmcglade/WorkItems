@@ -23,9 +23,9 @@
 )
 
 <button onclick="javascript: location.reload();" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"><span class="ui-button-text">Refresh</span></button>
+<button id="addWorkItemButton" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"><span class="ui-button-text">Add Work Item</span></button>
 
 <div id="dialog-form" title="Work Item Details">
-
     <table id="workItemDetails">
 		<tbody>
 			<tr>
@@ -42,25 +42,77 @@
 			</tr>
 			<tr>
 				<td><label for="createdDate">Created Date</label></td>
-				<td><input type="text" name="createdDate" id="createdDate" disabled="disabled" data-bind="value: Date(CreatedDate).toString()" /></td>
+				<td><input type="text" name="createdDate" id="createdDate" disabled="disabled" data-bind="value: CreatedDate" /></td>
+			</tr>
+			<tr>
+				<td><label for="comment">Comment</label></td>
+				<td><input type="text" name="comment" id="comment" data-bind="value: AddedComment" /></td>
 			</tr>
 		</tbody>
 	</table>
+
+    <br />
+
+    <script id='commentTemplate' type='text/html'>
+
+        <table id="workItemComments">
+            <thead>
+                <tr>
+                    <td>Comment</td>
+                    <td>User</td>
+                    <td>Date</td>
+                </tr>
+            </thead>
+		    <tbody>
+
+            {{each Comments()}}
+			<tr>
+				<td>${ Text }</td>
+				<td>${ User }</td>
+				<td>${ AddedDate }</td>
+			</tr>
+            {{/each}}
+
+		    </tbody>
+	    </table>
+
+    </script>
+
+
+
+    <div data-bind='template: "commentTemplate"' />
+
 </div>
 
 <script type="text/javascript">
     $(function () {
+        var allTableRows = $("#workItemGrid tbody tr");
+        var addWorkItemButton = $("#addWorkItemButton");
+
         var viewModel = {
             Id: null,
             Title: null,
             Description: null,
             CreatedDate: null,
+            AddedComment: null,
+            Comments: null,
 
             bind: function (workItem) {
                 this.Id = ko.observable(workItem.Id);
                 this.Title = ko.observable(workItem.Title);
                 this.Description = ko.observable(workItem.Description);
                 this.CreatedDate = ko.observable(workItem.CreatedDate);
+                this.AddedComment = ko.observable("");
+                this.Comments = ko.observableArray(workItem.comments);
+            },
+
+            reset: function () {
+                this.Id = ko.observable("");
+                this.Title = ko.observable("");
+                this.Description = ko.observable("");
+                this.CreatedDate = ko.observable(new Date());
+                this.AddedComment = ko.observable("");
+                this.Comments = ko.observableArray();
             },
 
             save: function () {
@@ -73,8 +125,6 @@
                 });
             }
         };
-
-        var allTableRows = $("#workItemGrid tbody tr");
 
         $("#dialog-form").dialog({
             autoOpen: false,
@@ -106,9 +156,16 @@
                     viewModel.bind(data);
 
                     ko.applyBindings(viewModel);
+
+                    $("#dialog-form").dialog("open");
                 }
             });
 
+        });
+
+        addWorkItemButton.click(function () {
+            viewModel.reset();
+            ko.applyBindings(viewModel);
             $("#dialog-form").dialog("open");
         });
     });

@@ -39,12 +39,24 @@ namespace WorkItems.Core.Services
             return Session.Get<WorkItem>(id);
         }
 
-        public void Save(WorkItem workItem)
+        public void Save(SaveWorkItemDetails workItemDetails)
         {
-            var savedWorkItem = GetById(workItem.Id);
+            var repositoryWorkItem = GetById(workItemDetails.Id);
 
-            savedWorkItem.Title = workItem.Title;
-            savedWorkItem.Description = workItem.Description;
+            if (repositoryWorkItem == null)
+            {
+                repositoryWorkItem = new WorkItem();
+            }
+
+            repositoryWorkItem.Title = workItemDetails.Title;
+            repositoryWorkItem.Description = workItemDetails.Description;
+
+            if (!string.IsNullOrEmpty(workItemDetails.AddedComment))
+            {
+                repositoryWorkItem.AddComment(workItemDetails.AddedComment, "unknown");
+            }
+
+            Session.SaveOrUpdate(repositoryWorkItem);
         }
     }
 }

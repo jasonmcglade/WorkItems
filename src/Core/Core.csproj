@@ -69,6 +69,7 @@
     <Compile Include="DataAccess\Mappings\WorkItemMap.cs" />
     <Compile Include="Domain\Comment.cs" />
     <Compile Include="Domain\Entity.cs" />
+    <Compile Include="Domain\SaveWorkItemDetails.cs" />
     <Compile Include="Domain\WorkItem.cs" />
     <Compile Include="Domain\WorkItemSearchCriteria.cs" />
     <Compile Include="Domain\WorkItemSearchResult.cs" />
