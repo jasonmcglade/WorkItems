@@ -29,10 +29,11 @@ namespace Web.Tests.Controllers
         [Test]
         public void IndexShouldGetWorkItemsFromService()
         {
+            var searchCriteria = new WorkItemSearchCriteria();
             var workItems = new WorkItems.Core.Domain.WorkItem[] { new WorkItems.Core.Domain.WorkItem() };
-            _workItemService.Expect(x => x.GetWorkItemsByCriteria(new WorkItemSearchCriteria())).Return(new WorkItemSearchResult { WorkItems = workItems });
+            _workItemService.Expect(x => x.GetWorkItemsByCriteria(searchCriteria)).Return(new WorkItemSearchResult { WorkItems = workItems });
 
-            var result = _controller.Index(new WorkItemSearchCriteria()) as ViewResult;
+            var result = _controller.Index(searchCriteria) as ViewResult;
 
             Assert.That(result.ViewBag.WorkItems, Is.EqualTo(workItems));
             _workItemService.VerifyAllExpectations();

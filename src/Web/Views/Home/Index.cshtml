@@ -9,10 +9,46 @@
 <div>@ViewBag.WorkItemCount Work Items.</div>
 
 @workItemGrid.GetHtml(
+    htmlAttributes: new { id = "workItemGrid" },
+    rowStyle: "table_row",
+    alternatingRowStyle: "table_row",
+    selectedRowStyle: "table_row",
+
     columns: workItemGrid.Columns(
-        workItemGrid.Column("Id"),
+        workItemGrid.Column("Id", format: @<text><span id="rowId">@item.Id</span></text>),
         workItemGrid.Column("Title"),
         workItemGrid.Column("Description"),
         workItemGrid.Column("Created Date", format: item => item.CreatedDate.ToString("dd MMM yyyy"))
     )
 )
+
+<div id="dialog-form" title="Work Item Details">
+	Loading...
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        var allTableRows = $("#workItemGrid tbody tr");
+
+        $("#dialog-form").dialog({
+            autoOpen: false,
+            height: 500,
+            width: 700,
+            modal: true,
+            buttons: {
+				OK: function() {
+    				$( this ).dialog( "close" );
+				},
+				Cancel: function() {
+					$( this ).dialog( "close" );
+				}
+			},
+        });
+
+        allTableRows.click(function () {
+            var workItemId = $(this).children().first().text();
+
+            $("#dialog-form").dialog("open");
+        });
+    });
+</script>

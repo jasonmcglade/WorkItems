@@ -2,12 +2,12 @@
 INSERT INTO work_item 
     (title, description, created_date, version)
 VALUES
-    ('Work Item Title One', 'Some detailed description on the work item.', date('now'), 1);
+    ('Work Item Title One', 'Some detailed description on the work item.', date('now','-1 day'), 1);
 
 INSERT INTO work_item 
     (title, description, created_date, version)
 VALUES
-    ('Work Item Title Two', 'Some detailed description on the work item.', date('now'), 1);
+    ('Work Item Title Two', 'Some detailed description on the work item.', date('now','-1 day'), 1);
 
 INSERT INTO work_item 
     (title, description, created_date, version)
@@ -17,7 +17,7 @@ VALUES
 INSERT INTO work_item 
     (title, description, created_date, version)
 VALUES
-    ('Work Item Title Four', 'Some detailed description on the work item.', date('now'), 1);
+    ('Work Item Title Four', 'Some detailed description on the work item.', date('now','-2 day'), 1);
 
 INSERT INTO work_item 
     (title, description, created_date, version)

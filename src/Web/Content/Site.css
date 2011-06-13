@@ -231,6 +231,10 @@ table th {
     border: solid 1px #e8eef4;
 }
 
+.table_row {
+    cursor: pointer;
+}
+
 /* MISC  
 ----------------------------------------------------------*/
 .clear {
