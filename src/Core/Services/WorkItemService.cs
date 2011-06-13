@@ -5,6 +5,7 @@ using System.Text;
 using WorkItems.Core.Domain;
 using NHibernate;
 using NHibernate.Linq;
+using System.Transactions;
 
 namespace WorkItems.Core.Services
 {
@@ -36,6 +37,14 @@ namespace WorkItems.Core.Services
         public WorkItem GetById(int id)
         {
             return Session.Get<WorkItem>(id);
+        }
+
+        public void Save(WorkItem workItem)
+        {
+            var savedWorkItem = GetById(workItem.Id);
+
+            savedWorkItem.Title = workItem.Title;
+            savedWorkItem.Description = workItem.Description;
         }
     }
 }

@@ -22,25 +22,27 @@
     )
 )
 
+<button onclick="javascript: location.reload();" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"><span class="ui-button-text">Refresh</span></button>
+
 <div id="dialog-form" title="Work Item Details">
 
     <table id="workItemDetails">
 		<tbody>
 			<tr>
 				<td><label for="id">Id</label></td>
-				<td><input type="text" name="id" id="id" disabled="disabled" data-bind="value: workItem().Id" /></td>
+				<td><input type="text" name="id" id="id" disabled="disabled" data-bind="value: Id" /></td>
 			</tr>
 			<tr>
 				<td><label for="title">Title</label></td>
-				<td><input type="text" name="title" id="title" data-bind="value: workItem().Title" /></td>
+				<td><input type="text" name="title" id="title" data-bind="value: Title" /></td>
 			</tr>
 			<tr>
 				<td><label for="description">Description</label></td>
-				<td><input type="text" name="description" id="description" data-bind="value: workItem().Description" /></td>
+				<td><input type="text" name="description" id="description" data-bind="value: Description" /></td>
 			</tr>
 			<tr>
 				<td><label for="createdDate">Created Date</label></td>
-				<td><input type="text" name="createdDate" id="createdDate" disabled="disabled" data-bind="value: Date(workItem().CreatedDate).toString()" /></td>
+				<td><input type="text" name="createdDate" id="createdDate" disabled="disabled" data-bind="value: Date(CreatedDate).toString()" /></td>
 			</tr>
 		</tbody>
 	</table>
@@ -48,6 +50,30 @@
 
 <script type="text/javascript">
     $(function () {
+        var viewModel = {
+            Id: null,
+            Title: null,
+            Description: null,
+            CreatedDate: null,
+
+            bind: function (workItem) {
+                this.Id = ko.observable(workItem.Id);
+                this.Title = ko.observable(workItem.Title);
+                this.Description = ko.observable(workItem.Description);
+                this.CreatedDate = ko.observable(workItem.CreatedDate);
+            },
+
+            save: function () {
+                $.ajax({
+                    url: '/WorkItem/Save',
+                    type: 'POST',
+                    data: ko.toJSON(this),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json"
+                });
+            }
+        };
+
         var allTableRows = $("#workItemGrid tbody tr");
 
         $("#dialog-form").dialog({
@@ -57,6 +83,7 @@
             modal: true,
             buttons: {
                 OK: function () {
+                    viewModel.save();
                     $(this).dialog("close");
                 },
                 Cancel: function () {
@@ -68,19 +95,15 @@
         allTableRows.click(function () {
             var workItemId = $(this).children().first().text();
 
-            var viewModel = {
-                workItem: null
-            };
-
             $.ajax({
                 url: '/WorkItem/Get',
                 type: 'GET',
-                data: ({id : workItemId}),
+                data: ({ id: workItemId }),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data) {
-                    // get the result and do some magic with it
-                    viewModel.workItem = ko.observable(data);
+                    // get the result and bind with knockout
+                    viewModel.bind(data);
 
                     ko.applyBindings(viewModel);
                 }

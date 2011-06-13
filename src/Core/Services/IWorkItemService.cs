@@ -9,6 +9,7 @@ namespace WorkItems.Core.Services
     public interface IWorkItemService
     {
         WorkItem GetById(int id);
+        void Save(WorkItem workItem);
         WorkItemSearchResult GetWorkItemsByCriteria(WorkItemSearchCriteria criteria);
     }
 }

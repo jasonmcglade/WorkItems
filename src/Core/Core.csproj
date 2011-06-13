@@ -54,6 +54,7 @@
     <Reference Include="System.Data.SQLite">
       <HintPath>..\..\packages\System.Data.SQLite.1.0.66.1\lib\System.Data.SQLite.DLL</HintPath>
     </Reference>
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -61,6 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\EntityInterceptor.cs" />
     <Compile Include="DataAccess\Mappings\CommentMap.cs" />
     <Compile Include="DataAccess\Mappings\EntityMap.cs" />
     <Compile Include="DataAccess\SQLiteSessionFactoryProvider.cs" />

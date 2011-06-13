@@ -15,7 +15,29 @@ namespace WorkItems.Web.Modules
         public override void Load()
         {
             Bind<ISessionFactory>().ToProvider(new SQLiteSessionFactoryProvider()).InSingletonScope();
-            Bind<ISession>().ToMethod(context => context.Kernel.Get<ISessionFactory>().OpenSession()).InRequestScope();
+            Bind<ISession>()
+                .ToMethod(context => context.Kernel.Get<ISessionFactory>().OpenSession(new EntityInterceptor()))
+                .InRequestScope()
+                .OnActivation(session =>
+                {
+                    session.BeginTransaction();
+                    session.FlushMode = FlushMode.Commit;
+                })
+                .OnDeactivation(session =>
+                {
+                    if (session.Transaction.IsActive)
+                    {
+                        try
+                        {
+                            session.Flush();
+                            session.Transaction.Commit();
+                        }
+                        catch
+                        {
+                            session.Transaction.Rollback();
+                        }
+                    }
+                });
 
             Bind<IWorkItemService>().To<WorkItemService>();
         }
