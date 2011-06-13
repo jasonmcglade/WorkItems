@@ -8,6 +8,7 @@ using WorkItems.Web.Controllers;
 using NUnit.Framework;
 using WorkItems.Core.Services;
 using Rhino.Mocks;
+using WorkItems.Core.Domain;
 
 namespace Web.Tests.Controllers
 {
@@ -29,9 +30,9 @@ namespace Web.Tests.Controllers
         public void IndexShouldGetWorkItemsFromService()
         {
             var workItems = new WorkItems.Core.Domain.WorkItem[] { new WorkItems.Core.Domain.WorkItem() };
-            _workItemService.Expect(x => x.GetAllWorkItems()).Return(workItems);
+            _workItemService.Expect(x => x.GetWorkItemsByCriteria(new WorkItemSearchCriteria())).Return(new WorkItemSearchResult { WorkItems = workItems });
 
-            var result = _controller.Index() as ViewResult;
+            var result = _controller.Index(new WorkItemSearchCriteria()) as ViewResult;
 
             Assert.That(result.ViewBag.WorkItems, Is.EqualTo(workItems));
             _workItemService.VerifyAllExpectations();

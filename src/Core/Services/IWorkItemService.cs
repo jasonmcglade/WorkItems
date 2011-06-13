@@ -8,6 +8,6 @@ namespace WorkItems.Core.Services
 {
     public interface IWorkItemService
     {
-        WorkItem[] GetAllWorkItems();
+        WorkItemSearchResult GetWorkItemsByCriteria(WorkItemSearchCriteria criteria);
     }
 }

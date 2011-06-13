@@ -17,12 +17,20 @@ namespace WorkItems.Core.Services
             Session = session;
         }
 
-        public WorkItem[] GetAllWorkItems()
+        public WorkItemSearchResult GetWorkItemsByCriteria(WorkItemSearchCriteria criteria)
         {
-            var workItems = (from item in Session.Query<WorkItem>()
-                                select item).ToArray();
+            var query = Session.Query<WorkItem>();
 
-            return workItems;
+            var totalCount = query.Count();
+
+            query = criteria.ApplySorting(query);
+            query = criteria.ApplyPaging(query);
+
+            return new WorkItemSearchResult
+                        {
+                            WorkItems = query.ToArray(),
+                            TotalWorkItemCount = totalCount
+                        };
         }
     }
 }

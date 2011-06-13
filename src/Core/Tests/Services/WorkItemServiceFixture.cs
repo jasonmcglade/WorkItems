@@ -27,9 +27,10 @@ namespace WorkItems.Core.Tests.Services
         [Test]
         public void GetAllWorkItemsWithNoItemsShouldReturnEmptyList()
         {
-            var items = _service.GetAllWorkItems();
+            var items = _service.GetWorkItemsByCriteria(new WorkItemSearchCriteria());
 
-            Assert.That(items, Is.Empty);
+            Assert.That(items.WorkItems, Is.Empty);
+            Assert.That(items.TotalWorkItemCount, Is.EqualTo(0));
         }
 
         [Test]
@@ -38,9 +39,9 @@ namespace WorkItems.Core.Tests.Services
             Save(new WorkItem { Title = "Title One" });
             Save(new WorkItem { Title = "Title Two" });
 
-            var items = _service.GetAllWorkItems();
+            var items = _service.GetWorkItemsByCriteria(new WorkItemSearchCriteria());
 
-            Assert.That(items.Length, Is.EqualTo(2));
+            Assert.That(items.WorkItems.Count(), Is.EqualTo(2));
         }
     }
 }

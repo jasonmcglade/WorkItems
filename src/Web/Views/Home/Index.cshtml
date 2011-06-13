@@ -1,27 +1,18 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+
+    var workItemGrid = new WebGrid(canPage: true, rowsPerPage: ViewBag.PageSize);
+    workItemGrid.Bind(ViewBag.WorkItems, rowCount: ViewBag.WorkItemCount, autoSortAndPage: false);
+    workItemGrid.Pager(WebGridPagerModes.NextPrevious);
 }
 
-<div>@ViewBag.WorkItems.Length Work Items.</div>
+<div>@ViewBag.WorkItemCount Work Items.</div>
 
-<table>
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Created Date</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in ViewBag.WorkItems)
-        {
-            <tr>
-                <td>@item.Id</td>
-                <td>@item.Title</td>
-                <td>@item.Description</td>
-                <td>@item.CreatedDate</td>
-            </tr>
-        }
-    </tbody>
-</table>
+@workItemGrid.GetHtml(
+    columns: workItemGrid.Columns(
+        workItemGrid.Column("Id"),
+        workItemGrid.Column("Title"),
+        workItemGrid.Column("Description"),
+        workItemGrid.Column("Created Date", format: item => item.CreatedDate.ToString("dd MMM yyyy"))
+    )
+)
