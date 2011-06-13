@@ -15,7 +15,7 @@
     selectedRowStyle: "table_row",
 
     columns: workItemGrid.Columns(
-        workItemGrid.Column("Id", format: @<text><span id="rowId">@item.Id</span></text>),
+        workItemGrid.Column("Id"),
         workItemGrid.Column("Title"),
         workItemGrid.Column("Description"),
         workItemGrid.Column("Created Date", format: item => item.CreatedDate.ToString("dd MMM yyyy"))
@@ -23,7 +23,27 @@
 )
 
 <div id="dialog-form" title="Work Item Details">
-	Loading...
+
+    <table id="workItemDetails">
+		<tbody>
+			<tr>
+				<td><label for="id">Id</label></td>
+				<td><input type="text" name="id" id="id" disabled="disabled" data-bind="value: workItem().Id" /></td>
+			</tr>
+			<tr>
+				<td><label for="title">Title</label></td>
+				<td><input type="text" name="title" id="title" data-bind="value: workItem().Title" /></td>
+			</tr>
+			<tr>
+				<td><label for="description">Description</label></td>
+				<td><input type="text" name="description" id="description" data-bind="value: workItem().Description" /></td>
+			</tr>
+			<tr>
+				<td><label for="createdDate">Created Date</label></td>
+				<td><input type="text" name="createdDate" id="createdDate" disabled="disabled" data-bind="value: Date(workItem().CreatedDate).toString()" /></td>
+			</tr>
+		</tbody>
+	</table>
 </div>
 
 <script type="text/javascript">
@@ -36,17 +56,35 @@
             width: 700,
             modal: true,
             buttons: {
-				OK: function() {
-    				$( this ).dialog( "close" );
-				},
-				Cancel: function() {
-					$( this ).dialog( "close" );
-				}
-			},
+                OK: function () {
+                    $(this).dialog("close");
+                },
+                Cancel: function () {
+                    $(this).dialog("close");
+                }
+            }
         });
 
         allTableRows.click(function () {
             var workItemId = $(this).children().first().text();
+
+            var viewModel = {
+                workItem: null
+            };
+
+            $.ajax({
+                url: '/WorkItem/Get',
+                type: 'GET',
+                data: ({id : workItemId}),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    // get the result and do some magic with it
+                    viewModel.workItem = ko.observable(data);
+
+                    ko.applyBindings(viewModel);
+                }
+            });
 
             $("#dialog-form").dialog("open");
         });

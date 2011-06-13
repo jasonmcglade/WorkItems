@@ -32,5 +32,10 @@ namespace WorkItems.Core.Services
                             TotalWorkItemCount = totalCount
                         };
         }
+
+        public WorkItem GetById(int id)
+        {
+            return Session.Get<WorkItem>(id);
+        }
     }
 }
